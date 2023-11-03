@@ -28,6 +28,7 @@ public class Connector {
 		} catch (SQLException e) {
 			System.out.println("Error while trying to connect to database: " + e);
 			c.close();
+			System.out.println("Connection " +c.getMetaData().getConnection() + "closed.");
 		}
 		return c;
 	}
