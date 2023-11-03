@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Login {
 
-	public boolean logWithUser(@NotNull Connection c, String user, String pass) {
+	public boolean logWithUser(@NotNull Connection c, @NotNull String user, @NotNull String pass) {
 		boolean isUserInDB = false;
 		String sql = "SELECT username, pass FROM users;";
 		try (PreparedStatement pt = c.prepareStatement(sql)) {
