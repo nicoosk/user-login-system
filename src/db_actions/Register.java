@@ -1,4 +1,4 @@
-package util;
+package db_actions;
 
 public class Register {
 

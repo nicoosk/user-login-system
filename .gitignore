@@ -28,3 +28,4 @@ bin/
 ### Mac OS ###
 .DS_Store
 /src/test/principal.java
+/src/test
