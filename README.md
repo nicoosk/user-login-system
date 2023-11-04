@@ -15,7 +15,7 @@
 - [Método logWithUser](#método-logwithuser)
 	- [Cómo manejarlo](#cómo-manejar-el-método-logwithuser)
 - [Método registerUser()](#método-registeruser)
-	- [Diferencia principal con logWithUser()](#qué-lo-diferencia-con-logwithuser)
+	- [Diferencia principal con logWithUser()](#qué-lo-diferencia-de-logwithuser)
 - [Final](#fin-del-readme)
 
 ## Instalación de la librería
