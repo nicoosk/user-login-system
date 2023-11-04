@@ -1,7 +1,6 @@
 package db_manage;
 
 import org.jetbrains.annotations.NotNull;
-
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +22,6 @@ public class Login {
 	}
 
 	private boolean userLoggedIn(@NotNull ResultSet rs, String user, String pass) {
-		ArrayList<String> userList = new ArrayList<>();
 		try {
 			while (rs.next()) {
 				String userToCompare = rs.getString("username");
@@ -32,7 +30,6 @@ public class Login {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error with user recovering: " + e);
-
 		}
 		return false;
 	}

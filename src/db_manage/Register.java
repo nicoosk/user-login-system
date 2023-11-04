@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Register {
-
 	public int registerUser(@NotNull Connection c, @NotNull String user, @NotNull String pass){
 		int rowsAffected = 0;
 		String sql = "INSERT INTO users (username, pass) VALUE (?,?);";
