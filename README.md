@@ -1,6 +1,23 @@
 # user-login-system
 ##### Proyecto creado para usarse repetidas veces para crear inicios de sesión básicos.
 
+#Indice de navegación
+- [Instalación](#instalación-de-la-librería)
+- [¿Por dónde empezar?](#por-dónde-empezar)
+- [Clases y constructores](#clases-y-sus-constructores)
+	- [Connector](#clase-connector)
+  	- [Login](#clase-login)
+  	- [Register](#clase-register)
+  	- [Uso correcto de la clase Connector](#uso-correcto-de-la-clase-connector)
+- [Método getConnection()](#método-getconnection)
+	- [Crear conexión con getConnection](#crear-conexión-con-el-método-getconnection)
+ 	- [Cómo usar la conexión](#cómo-usar-la-conexión-establecida)
+- [Método logWithUser](#método-logwithuser)
+	- [Cómo manejarlo](#cómo-manejar-el-método-logwithuser)
+- [Método registerUser()](#método-registeruser)
+	- [Diferencia principal con logWithUser()](qué-lo-diferencia-con-logwithuser)
+- [Final](#fin-del-readme)
+
 ## Instalación de la librería
 Hay ciertos pasos que debes seguir para poder utilizar esta herramienta en tu proyecto personal:
 1. Crea un paquete en tu proyecto donde almacenes este repositorio de forma que sea accesible.
@@ -10,7 +27,7 @@ Hay ciertos pasos que debes seguir para poder utilizar esta herramienta en tu pr
 3. Disfruta de la herramienta que he creado para ti.
 
 
-##¿Por dónde empezar?
+## ¿Por dónde empezar?
 Al estar escrito en Java puro, hay métodos y constructores flexibles. Puedes crear instancias sobre las clases que necesites ocupar y ocupar las distintas variedades de constructores que ofrecen.
 
 ## Clases y sus constructores
@@ -174,7 +191,7 @@ Si devuelve *false*, el usuario no se encuentra en la base de datos (debe regist
 # Método registerUser()
 Este método es parte de la clase [Register](#clase-register) y tiene las mismas formas de implementarse que el método anterior.
 
-###¿Qué lo diferencia de logWithUser()?
+### ¿Qué lo diferencia de logWithUser()?
 A diferencia del método anterior que trabaja con booleanos, éste método trabaja con enteros, siendo estos el número de filas afectadas (debería ser 1 en la mayoría de casos controlados). 
 
 	public int registerUser(){
@@ -184,5 +201,5 @@ A diferencia del método anterior que trabaja con booleanos, éste método traba
 
 Pensaba en crear una forma de ingresar muchos usuarios de una vez, pero debido al contexto en que esto se utilizaría, lo veo totalmente innecesario. De igual manera, ¡Déjame saber tus ideas sobre eso!
 
-#Fin del README
+# Fin del README
 Gracias por pasarte por aquí. Espero que si en algún momento necesitas o te gustaría jugar con este proyecto, este README te venga de maravilla para poder empezar con esta pequeña pero útil herramienta. [Volver al inicio](#user-login-system)
