@@ -14,6 +14,10 @@ public class Connector {
 	public Connector(String url){
 		this.url = url;
 	}
+	public Connector(String user, String pass){
+		this.user = user;
+		this.pass = pass;
+	}
 	public Connector(String url, String user, String pass){
 		this.url = url;
 		this.user = user;
@@ -21,6 +25,17 @@ public class Connector {
 	}
 
 	public Connection getConnection() throws SQLException {
+		try{
+			c = DriverManager.getConnection(url, user, pass);
+			System.out.println("Connection successful");
+		} catch (SQLException e) {
+			System.out.println("Error while trying to connect to database: " + e);
+			c.close();
+			System.out.println("Connection " +c.getMetaData().getConnection() + "closed.");
+		}
+		return c;
+	}
+	public Connection getConnection(String url) throws SQLException {
 		try{
 			c = DriverManager.getConnection(url, user, pass);
 			System.out.println("Connection successful");
