@@ -23,7 +23,17 @@ public class Login {
 		this.user = user;
 		this.pass = pass;
 	}
-
+	public boolean logWithUser() {
+		boolean isUserInDB = false;
+		String sql = "SELECT username, pass FROM users;";
+		try (PreparedStatement pt = c.prepareStatement(sql)) {
+			ResultSet rs = pt.executeQuery();
+			isUserInDB = userLoggedIn(rs, user, pass);
+		} catch (SQLException e) {
+			System.out.println("Error while executing query: " + e.getMessage());
+		}
+		return isUserInDB;
+	}
 	public boolean logWithUser(@NotNull Connection c) {
 		boolean isUserInDB = false;
 		String sql = "SELECT username, pass FROM users;";
