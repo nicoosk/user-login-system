@@ -1,7 +1,7 @@
 # user-login-system
 ##### Proyecto creado para usarse repetidas veces para crear inicios de sesión básicos.
 
-#Indice de navegación
+# Indice de navegación
 - [Instalación](#instalación-de-la-librería)
 - [¿Por dónde empezar?](#por-dónde-empezar)
 - [Clases y constructores](#clases-y-sus-constructores)
