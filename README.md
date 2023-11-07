@@ -22,8 +22,11 @@
 Hay ciertos pasos que debes seguir para poder utilizar esta herramienta en tu proyecto personal:
 1. Crea un paquete en tu proyecto donde almacenes este repositorio de forma que sea accesible.
 2. Dirigete al paquete o directorio donde quieres guardar el proyecto, y clónalo de la siguiente forma: 
+
 ``git clone https://github.com/nicoosk/user-login-system``
+
 **Ten en cuenta que este comando clona el repositorio en tu directorio actual**
+
 3. Disfruta de la herramienta que he creado para ti.
 
 
