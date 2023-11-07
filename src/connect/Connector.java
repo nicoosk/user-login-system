@@ -1,4 +1,4 @@
-package db_manage;
+package connect;
 
 import java.sql.Connection;
 import java.sql.SQLException;

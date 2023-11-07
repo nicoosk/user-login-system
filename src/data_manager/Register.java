@@ -1,4 +1,4 @@
-package db_manage;
+package data_manager;
 
 import org.jetbrains.annotations.NotNull;
 
