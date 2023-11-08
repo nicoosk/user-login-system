@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Base64;
 
 public class Encrypt {
-	String key = "askjdhajsdh";
+	String key = "whegqwegqogqwl";
 	public Encrypt(){
 	}
 	public Encrypt(String key){
@@ -37,7 +37,7 @@ public class Encrypt {
 			SecretKeySpec secretKeySpec = createKey(key);
 			Cipher cipher = Cipher.getInstance("AES");
 			cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-			byte [] chain = Base64.getDecoder().decode(pass);
+			byte [] chain = Base64.getEncoder().encode(pass.getBytes(StandardCharsets.UTF_8));
 			byte [] encryptedChain = cipher.doFinal(chain);
 			return Base64.getEncoder().encodeToString(encryptedChain);
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException |
@@ -50,9 +50,10 @@ public class Encrypt {
 			SecretKeySpec secretKeySpec = createKey(key);
 			Cipher cipher = Cipher.getInstance("AES");
 			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+
 			byte [] chain = Base64.getDecoder().decode(decrypt_pass);
 			byte [] decryptedChain = cipher.doFinal(chain);
-			return Base64.getEncoder().encodeToString(decryptedChain);
+			return new String(decryptedChain);
 		}catch (Exception e){
 			throw new RuntimeException(e);
 		}
