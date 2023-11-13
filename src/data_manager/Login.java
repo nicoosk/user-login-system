@@ -1,5 +1,6 @@
 package data_manager;
 
+import data_manager.handlePassCipher.Encrypt;
 import org.jetbrains.annotations.NotNull;
 import java.sql.ResultSet;
 import java.sql.Connection;
@@ -73,6 +74,7 @@ public class Login {
 			while (rs.next()) {
 				String userToCompare = rs.getString("username");
 				String passToCompare = rs.getString("pass");
+				passToCompare = new Encrypt().decryptString(passToCompare);
 				if (userToCompare.equals(user) && passToCompare.equals(pass)) return true;
 			}
 		} catch (SQLException e) {

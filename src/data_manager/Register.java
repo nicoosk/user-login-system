@@ -1,5 +1,6 @@
 package data_manager;
 
+import data_manager.handlePassCipher.Encrypt;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -27,6 +28,9 @@ public class Register {
 	}
 	public int registerUser(){
 		int rowsAffected = 0;
+		System.out.println(pass);
+		pass = new Encrypt().encodeString(pass);
+		System.out.println(pass);
 		String sql = "INSERT INTO users (username, pass) VALUE (?,?);";
 		try (PreparedStatement pt = c.prepareStatement(sql)){
 			insertIntoQuery(pt, user, pass);
@@ -38,6 +42,7 @@ public class Register {
 	}
 	public int registerUser(@NotNull Connection c){
 		int rowsAffected = 0;
+		pass = new Encrypt().encodeString(pass);
 		String sql = "INSERT INTO users (username, pass) VALUE (?,?);";
 		try (PreparedStatement pt = c.prepareStatement(sql)){
 			insertIntoQuery(pt, user, pass);
@@ -49,6 +54,7 @@ public class Register {
 	}
 	public int registerUser(@NotNull String user, @NotNull String pass){
 		int rowsAffected = 0;
+		pass = new Encrypt().encodeString(pass);
 		String sql = "INSERT INTO users (username, pass) VALUE (?,?);";
 		try (PreparedStatement pt = c.prepareStatement(sql)){
 			insertIntoQuery(pt, user, pass);
@@ -58,8 +64,9 @@ public class Register {
 		}
 		return rowsAffected;
 	}
-	public int registerUser(@NotNull Connection c, @NotNull String user, @NotNull String pass){
+	public int registerUser(@NotNull Connection c, @NotNull String user, @NotNull String pass) {
 		int rowsAffected = 0;
+		pass = new Encrypt().encodeString(pass);
 		String sql = "INSERT INTO users (username, pass) VALUE (?,?);";
 		try (PreparedStatement pt = c.prepareStatement(sql)){
 			insertIntoQuery(pt, user, pass);
