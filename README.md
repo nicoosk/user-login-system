@@ -42,6 +42,7 @@ Existen (hasta el momento) solo 3 clases disponibles:
 ## Clase Connector
 Esta clase es la principal y fundamental para que el ambiente de trabajo sea fluido. Necesitas crear una instancia de esta clase o heredar de la misma. Aquí te presento los diferentes constructores:
 
+```Java
 	public Connector(){ 
 	}
 
@@ -59,10 +60,12 @@ Esta clase es la principal y fundamental para que el ambiente de trabajo sea flu
 		this.user = user;
 		this.pass = pass;
 	}
+```
 Cada uno de estos constructores puede ser explicado por su misma estructura, pero aquí va un ejemplo:
 
-`Connector myConnector = new Connector("jdbc:mysql://localhost:3306","myUser","myPass");`
-
+```Java
+Connector myConnector = new Connector("jdbc:mysql://localhost:3306","myUser","myPass");
+```
 Cabe destacar que el usuario y la contraseña que instancies en el objeto tipo Connector es **EXCLUSIVAMENTE** de la base de datos, no del usuario que deseas registrar o loggear.
 
 **Actualmente estoy trabajando en una implementación de encriptación de constraseñas.**
@@ -70,6 +73,7 @@ Cabe destacar que el usuario y la contraseña que instancies en el objeto tipo C
 ## Clase Login
 Esta clase, como su nombre lo indica, se encarga del loggeo del usuario. También cuenta con sus propios constructores:
 
+```Java
 	public Login(){
 	}
 
@@ -87,17 +91,21 @@ Esta clase, como su nombre lo indica, se encarga del loggeo del usuario. Tambié
 		this.user = user;
 		this.pass = pass;
 	}
+```
 
 En esta ocasión, los campos *user* y *pass* deben ser los datos del usuario que deseas loggear o registrar, **NO** los de la base de datos.
 
 La creación del objeto tipo Login sería algo como esto:
-`Login myLogin = new Login("userToLogin", "passToLogin");`
+```Java
+Login myLogin = new Login("userToLogin", "passToLogin");
+```
 
 Para utilizar el constructor con la variable tipo Connection, debemos primero establecer la conexión con la base de datos. [Ver más sobre cómo establecer una conexión](#método-getconnection)
 
 ## Clase Register
 Esta clase sigue el mismo patrón de constructores que la [clase Login](#clase-login). De igual forma muestro el resumen de constructores:
 
+```Java
 	public Register(){
 	}
 
@@ -115,6 +123,7 @@ Esta clase sigue el mismo patrón de constructores que la [clase Login](#clase-l
 		this.user = user;
 		this.pass = pass;
 	}
+```
 
 El método de creación de instancias sería el mismo que con el Login
 
@@ -127,6 +136,7 @@ Para implementar este método, primero debemos crear el objeto o instancia de la
 #### Crear conexión con el método getConnection()
 Para crear correctamente una conexión, debemos guardar la conexión en una variable tipo Connection de la siguiente forma:
 
+```Java
 		Connector myConnector = new Connector("jdbc:mysql://localhost:3306","myUser","myPass");
 		Connection c = null;
 		
@@ -135,9 +145,11 @@ Para crear correctamente una conexión, debemos guardar la conexión en una vari
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+```
 
 Es importante destacar que la ejecución del método *getConnection()* debe ser rodeada de un bloque **try-catch**, ya que este método al momento de cerrarse la conexión si ocurre una excepción, tira la excepción de tipo SQLException. Esto último lo podemos ver en el siguiente bloque de código:
 
+```Java
 	public Connection getConnection() throws SQLException {
 		try{
 			// hace algo
@@ -148,6 +160,7 @@ Es importante destacar que la ejecución del método *getConnection()* debe ser 
 		}
 		return c;
 	}
+```
 
 # Cómo usar la conexión establecida
 Ahora que ya tenemos la conexión establecida, podemos empezar a ocuparla en los distintos métodos de cada clase. Pero primero veámos un poco de la clase Login y su método principal.
@@ -156,39 +169,45 @@ Ahora que ya tenemos la conexión establecida, podemos empezar a ocuparla en los
 Este método es parte de la clase [Login](#clase-login), y tiene diferentes formas de ejecutarse:
 
 **Ejecución sin parámetros:**
-
+``` Java
 	public boolean logWithUser() {
 		// do this
 	}
-
+```
 **Con objeto tipo Connection:**
 
+```Java
 	public boolean logWithUser(@NotNull Connection c) {
 		//do that
 	}
-
+```
 **Con usuario y contraseña**
 
+```Java
 	public boolean logWithUser(@NotNull String user, @NotNull String pass) {
 		//do something
 	}
+```
 
 **Con variable tipo Connection, usuario y contraseña:**
 
+```Java
 	public boolean logWithUser(@NotNull Connection c, @NotNull String user, @NotNull String pass) {
 		//doing it again
 	}
+```
 
 Todas estas posibilidades están en armonía con los tipos de constructores que existen para cada clase. **Este patrón se repite para todas las clases**
 
 ## Cómo manejar el método logWithUser()
 Como se puso observar, este método es de tipo *boolean*, por lo tanto, al ejecutarse el método nos indica si el usuario que intentamos loggear realmente se encontraba en la base de datos.
 
+```Java
 	public boolean logWithUser() {
 		// do something ...
 		return isUserInDB;
 	}
-
+```
 Si devuelve *false*, el usuario no se encuentra en la base de datos (debe registrarse). Si devuelve *true*, entonces el usuario si se encuentra y puede tener acceso a lo que sea que estés construyendo.
 
 # Método registerUser()
@@ -197,10 +216,12 @@ Este método es parte de la clase [Register](#clase-register) y tiene las mismas
 ### ¿Qué lo diferencia de logWithUser()?
 A diferencia del método anterior que trabaja con booleanos, éste método trabaja con enteros, siendo estos el número de filas afectadas (debería ser 1 en la mayoría de casos controlados). 
 
+```Java
 	public int registerUser(){
 		//do this
 		return rowsAffected;
 	}
+```
 
 Pensaba en crear una forma de ingresar muchos usuarios de una vez, pero debido al contexto en que esto se utilizaría, lo veo totalmente innecesario. De igual manera, ¡Déjame saber tus ideas sobre eso!
 
